@@ -8,7 +8,7 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 
 if not MONGO_URI:
-    raise ValueError("MongoDB connection string is missing!")
+    raise ValueError("MONGO_URI is missing. Check your .env file.")
 
 client = MongoClient(
     MONGO_URI,
@@ -17,6 +17,7 @@ client = MongoClient(
 
 db = client["recall_ai"]
 memories_collection = db["memories"]
+
 
 def test_connection():
     client.admin.command("ping")
